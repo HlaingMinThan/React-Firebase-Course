@@ -37,11 +37,22 @@
 
 <script type="text/babel">
     const Main = () => {
+
+        let name = "hlaing min than";
+        let number = 20;
+        let className = "change-class";
+
+
         return (
             //this is main section
-            <div>
-                Hello World this is main tag
-                <span>hi there</span>
+            <div className={className}>
+                <h1>{name.toUpperCase()}</h1>
+                <p>{number}</p>
+                <p>{new Date().toDateString()}</p>
+
+                <button onClick={(e) => {
+                    console.log(e)
+                }}>click me</button>
             </div>
         )
     }
