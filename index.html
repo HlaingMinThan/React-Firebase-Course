@@ -31,13 +31,19 @@
 <body>
     <h1>Hello World</h1>
     <div id="main"></div>
-
+    <!-- this is footer section -->
     <footer>Footer</footer>
 </body>
 
 <script type="text/babel">
     const Main = () => {
-        return <div>Hello World this is main tag</div>
+        return (
+            //this is main section
+            <div>
+                Hello World this is main tag
+                <span>hi there</span>
+            </div>
+        )
     }
 
     let rootContainer = document.getElementById('main');
