@@ -1,11 +1,12 @@
 import './App.css';
+import { useState } from 'react';
 
 function App() {
 
-  let name = "Hlaing Min Than";
+  let [name,setName] = useState("Hlaing Min Than");// [getter,setterFun]
 
   let changeName = () => {
-    name = 'Aung Aung';
+    setName('Aung Aung');
     console.log(name);
   }
 
