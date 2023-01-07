@@ -36,12 +36,13 @@ function App() {
 
       <h1>Posts</h1>
       <ul>
-        {posts.map((post)=>(
+        {!!posts.length && posts.map((post)=>(
           <li key={post.id}>
             {post.title}
             <button onClick={()=>deletePost(post.id)}>delete</button>
           </li>
         ))}
+        {!posts.length && <p>No Posts Available</p> }
       </ul>
     </div>
   );
