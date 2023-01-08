@@ -1,0 +1,20 @@
+/* nav component */
+nav {
+    background-color: yellow;
+    padding: 10px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.container ul {
+    display: flex;
+}
+.container li {
+    list-style-type: none;
+    margin: 0 20px;
+}
