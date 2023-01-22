@@ -1,9 +1,9 @@
 /* nav component */
-nav {
+.navbar {
     background-color: yellow;
     padding: 10px;
 }
-.container {
+.navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,10 +11,10 @@ nav {
     margin: auto;
 }
 
-.container ul {
+.navbar .container ul {
     display: flex;
 }
-.container li {
+.navbar .container li {
     list-style-type: none;
     margin: 0 20px;
 }
