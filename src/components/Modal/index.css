@@ -21,3 +21,11 @@
 .modal-component .modal h1 {
     margin: 20px;
 }
+
+.modal-component .border-red {
+    border: 4px solid red;
+}
+
+.modal-component .border-blue {
+    border: 4px solid blue;
+}

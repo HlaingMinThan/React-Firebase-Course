@@ -1,7 +1,6 @@
 /* postsList component */
 
 .postList {
-    background-color: lightgreen;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -10,13 +9,13 @@
 
 .postList .single-post {
     flex: 1;
-    background-color: blue;
     margin: 20px;
     width: 500px;
     height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
     font-size: 20px;
+    border: 3px solid gray;
+    border-radius: 30px;
 }
