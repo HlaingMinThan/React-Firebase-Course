@@ -1,17 +1,13 @@
 import React from 'react'
 import './index.css';
 import { useState } from 'react';
-import { useRef } from 'react';
 
 export default function Index({addPost}) {
 
-  // let [ title, setTitle ]= useState("");
-
-  let title = useRef();
+  let [ title, setTitle ]= useState("");
 
   let resetForm = () => {
-    // setTitle('');
-    title.current.value = '';
+    setTitle('');
     console.log('updated successfully')
   }
 
@@ -19,7 +15,7 @@ export default function Index({addPost}) {
     e.preventDefault();// prevent refreshing page
     let post = {
       id : Math.floor(Math.random()*10000),
-      title : title.current.value
+      title : title
     }
     resetForm()
     addPost(post);
@@ -30,7 +26,7 @@ export default function Index({addPost}) {
         <h1>Create Post</h1>
         <div className="form-control">
           <label htmlFor="">Title</label>
-          <input type="text"  ref={title}/>
+          <input type="text" onChange={(e) => setTitle(e.target.value)} value={title}/>
         </div>
         <div className="form-control">
           <button type='submit'>Post Now</button>
