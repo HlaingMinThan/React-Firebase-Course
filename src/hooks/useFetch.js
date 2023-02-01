@@ -9,7 +9,6 @@ function useFetch(url , _options ) {
     let options = useRef(_options).current;
 
     useEffect(() => {
-      console.log(options) // obj -> reference
       let abortController = new AbortController();
       let signal = abortController.signal;
 
