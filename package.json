@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev" : "json-server -w src/data/db.json --port=3001",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
