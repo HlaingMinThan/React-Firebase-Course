@@ -42,12 +42,30 @@ function App() {
     })
   }
 
+  let updateTodo = (todo) => {
+    fetch(`http://localhost:3001/todos/${todo.id}` ,{
+      method : "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body : JSON.stringify(todo)
+    })
+    setTodos(prevState => {
+      return prevState.map(t => {
+        if(t.id === todo.id) {
+          return todo
+        }
+        return t;
+      });// [updatedTodo,todo,todo]
+    })
+  }
+
   return (
     <div className="todo-app-container">
       <div className="todo-app">
         <h2>Todo App</h2>
         <TodoForm addTodo={addTodo}/>
-        <TodoList todos={todos} deleteTodo={deleteTodo}/>
+        <TodoList todos={todos} deleteTodo={deleteTodo} updateTodo={updateTodo}/>
         <CheckAllAndRemaining/>
         <div className="other-buttons-container">
           <TodoFilters/>

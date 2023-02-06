@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function Todo({todo,deleteTodo}) {
+export default function Todo({todo, deleteTodo , updateTodo}) {
+
+  let [ isEdit, setIsEdit ] = useState(false);
+  let [ title, setTitle ] = useState(todo.title);
+
+  let updateTodoHandler = (e) => {
+    e.preventDefault();
+
+    let updatedTodo = {
+      id : todo.id,
+      title,
+      completed : todo.completed
+    }
+    updateTodo(updatedTodo)
+    setIsEdit(false);
+  }
 
   return (
     <li className="todo-item-container">
         <div className="todo-item">
             <input type="checkbox" />
-            <span className={`todo-item-label ${todo.completed ? 'line-through' : ''}`}>
+            {!isEdit && <span onDoubleClick={ () => setIsEdit(true)} className={`todo-item-label ${todo.completed ? 'line-through' : ''}`}>
             {todo.title}
-            </span>
-            {/* <input type="text" className="todo-item-input" value="Go to Grocery" /> */}
+            </span>}
+            {isEdit && 
+              <form onSubmit={updateTodoHandler}>
+                <input type="text" className="todo-item-input" value={title}  onChange={(e) => setTitle(e.target.value)}/>
+              </form>
+            }
         </div>
         <button className="x-button" onClick={() => deleteTodo(todo.id)}>
             <svg
