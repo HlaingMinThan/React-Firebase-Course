@@ -8,12 +8,12 @@
     {
       "id": 2,
       "title": "My second Todo",
-      "completed": false
+      "completed": true
     },
     {
       "id": 0.8877246958081344,
       "title": "new one",
-      "completed": false
+      "completed": true
     }
   ]
 }
