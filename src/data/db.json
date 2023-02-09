@@ -1,14 +1,3 @@
 {
-  "todos": [
-    {
-      "id": 0.21310651600468677,
-      "title": "hi there",
-      "completed": true
-    },
-    {
-      "id": 0.4999931084908087,
-      "title": "another task",
-      "completed": true
-    }
-  ]
+  "todos": []
 }
