@@ -1,0 +1,12 @@
+.Home .card {
+    border: 1px solid rgb(190, 187, 187);
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.1);
+}
+
+.card a {
+    color: rgb(67, 67, 241);
+    text-decoration: underline;
+}
