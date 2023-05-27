@@ -1,7 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
+    let [search, setSearch] = useState('');
+    let navigate = useNavigate();
+
+    let handleSearch = (e) => {
+        navigate('/?search=' + search);
+    }
+
     return (
         <nav className='border border-b-1'>
             <ul className='flex justify-between items-center p-3 max-w-6xl mx-auto'>
@@ -10,7 +17,10 @@ export default function Navbar() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
 
-                    <input type="text" placeholder='search books...' className='outline-none' />
+                    <input value={search} onChange={e => setSearch(e.target.value)} type="text" placeholder='search books...' className='outline-none' />
+                    <button onClick={handleSearch} className='text-white bg-primary px-3 py-1 rounded-2xl flex items-center gap-1'>
+                        <span className="hidden md:block">Search</span>
+                    </button>
                 </li>
                 <Link to="/" className='flex items-center gap-3 md:-ml-32 cursor-pointer'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
