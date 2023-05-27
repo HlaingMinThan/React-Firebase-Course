@@ -11,6 +11,10 @@ export default function Create() {
     let { setPostData, data: book } = useFetch('http://localhost:3000/books', "POST");
     let navigate = useNavigate();
     let addCategory = (e) => {
+        if (newCategory && categories.includes(newCategory)) {
+            setNewCategory('')
+            return;
+        }
         setCategories(prev => [newCategory, ...prev])
         setNewCategory('')
     }
