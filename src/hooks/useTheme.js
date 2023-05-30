@@ -6,5 +6,5 @@ export default function useTheme() {
     if(contexts === undefined) {
         new Error('theme context should be only used in ThemeContextProvider')
     }
-    return  contexts;// {theme : 'dark'}
+    return  contexts;// {theme : 'dark', changeTheme}
 }
