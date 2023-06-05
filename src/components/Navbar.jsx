@@ -12,10 +12,10 @@ export default function Navbar() {
         navigate('/?search=' + search);
     }
 
-    let { theme, changeTheme } = useTheme();
+    let { isDark, changeTheme } = useTheme();
 
     return (
-        <nav className={`border border-b-1 `}>
+        <nav className={`border border-b-1 ${isDark ? 'bg-dbg border-primary' : 'bg-white'}`}>
             <ul className='flex justify-between items-center p-3 max-w-6xl mx-auto'>
                 <li className='flex items-center gap-3'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -50,8 +50,8 @@ export default function Navbar() {
                         <img src="https://d27v83ov1up738.cloudfront.net/user-profiles/zhW65iWspiv5FRKjp465yKLiQt9kPUhd2L8UDfV0.jpg" alt="" className='w-full rounded-full' />
                     </div>
                     <div className='cursor-pointer'>
-                        {theme === 'dark' && <img src={lightIcon} alt="" className='w-8' onClick={() => changeTheme('light')} />}
-                        {theme === 'light' && <img src={darkIcon} alt="" className='w-8' onClick={() => changeTheme('dark')} />}
+                        {isDark && <img src={lightIcon} alt="" className='w-8' onClick={() => changeTheme('light')} />}
+                        {!isDark && <img src={darkIcon} alt="" className='w-8' onClick={() => changeTheme('dark')} />}
                     </div>
                 </li>
             </ul>
