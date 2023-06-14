@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import useTheme from '../hooks/useTheme';
-import { addDoc, collection, doc, getDoc, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export default function Create() {
@@ -46,7 +46,7 @@ export default function Create() {
         setNewCategory('')
     }
 
-    let addBook = async (e) => {
+    let submitForm = async (e) => {
         e.preventDefault();
         let data = {
             title,
@@ -54,8 +54,13 @@ export default function Create() {
             categories,
             date: serverTimestamp()
         }
-        let ref = collection(db, 'books');
-        await addDoc(ref, data)
+        if (isEdit) {
+            let ref = doc(db, 'books', id);
+            await updateDoc(ref, data);
+        } else {
+            let ref = collection(db, 'books');
+            await addDoc(ref, data);
+        }
         navigate('/')
     }
 
@@ -63,7 +68,7 @@ export default function Create() {
 
     return (
         <div className="h-screen">
-            <form className="w-full max-w-lg mx-auto mt-5" onSubmit={addBook}>
+            <form className="w-full max-w-lg mx-auto mt-5" onSubmit={submitForm}>
                 <div className="flex flex-wrap -mx-3 mb-6">
                     <div className="w-full px-3">
                         <label className={`block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password ${isDark ? 'text-white' : ''}`}>
