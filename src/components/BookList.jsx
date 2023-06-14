@@ -3,7 +3,7 @@ import book from '../assets/book.png';
 import { Link, useLocation } from 'react-router-dom';
 import useTheme from '../hooks/useTheme';
 import { db } from '../firebase';
-import { collection, deleteDoc, doc, getDocs, orderBy, query } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query } from 'firebase/firestore';
 import trash from '../assets/trash.svg';
 import pencil from '../assets/pencil.svg';
 
@@ -20,15 +20,14 @@ export default function BookList() {
     let deleteBook = async (e, id) => {
         e.preventDefault();
         let ref = doc(db, 'books', id);
-        await deleteDoc(ref);
-        setBooks(prev => prev.filter(b => b.id !== id));
+        await deleteDoc(ref); //backend delete
     }
 
     useEffect(function () {
         setLoading(true)
         let ref = collection(db, 'books');
         let q = query(ref, orderBy('date', 'desc'))
-        getDocs(q).then(docs => {
+        onSnapshot(q, docs => {
             if (docs.empty) {
                 setError('no documents found');
                 setLoading(false)
