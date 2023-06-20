@@ -15,7 +15,9 @@ export default function Login() {
 
         let user = await signIn(email, password);
 
-        navigate('/')
+        if (user) {
+            navigate('/')
+        }
     }
 
     return (
