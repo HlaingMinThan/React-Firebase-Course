@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import book from '../assets/book.png';
 import { Link, useLocation } from 'react-router-dom';
 import useTheme from '../hooks/useTheme';
-import { db } from '../firebase';
-import { collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query } from 'firebase/firestore';
 import trash from '../assets/trash.svg';
 import pencil from '../assets/pencil.svg';
+import useFirestore from '../hooks/useFirestore';
 
 export default function BookList() {
 
@@ -13,36 +12,16 @@ export default function BookList() {
     let params = new URLSearchParams(location.search);
     let search = params.get('search')
 
-    let [error, setError] = useState('');
-    let [books, setBooks] = useState([]);
-    let [loading, setLoading] = useState(false);
+    let { getCollection, deleteDocument } = useFirestore();
+
+    let { error, data: books, loading } = getCollection('books');
 
     let deleteBook = async (e, id) => {
         e.preventDefault();
-        let ref = doc(db, 'books', id);
-        await deleteDoc(ref); //backend delete
+        await deleteDocument('books', id);
     }
 
-    useEffect(function () {
-        setLoading(true)
-        let ref = collection(db, 'books');
-        let q = query(ref, orderBy('date', 'desc'))
-        onSnapshot(q, docs => {
-            if (docs.empty) {
-                setError('no documents found');
-                setLoading(false)
-            } else {
-                let books = [];
-                docs.forEach(doc => {
-                    let book = { id: doc.id, ...doc.data() }
-                    books.push(book)
-                })
-                setBooks(books)
-                setLoading(false)
-                setError('');
-            }
-        })
-    }, [])
+
 
     if (error) {
         return <p>{error}</p>
