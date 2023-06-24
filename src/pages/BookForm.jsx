@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import useTheme from '../hooks/useTheme';
 import { doc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import useFirestore from '../hooks/useFirestore';
+import { AuthContext } from '../contexts/AuthContext';
 
 export default function Create() {
     let { id } = useParams();
@@ -48,6 +49,7 @@ export default function Create() {
         setCategories(prev => [newCategory, ...prev])
         setNewCategory('')
     }
+    let { user } = useContext(AuthContext);
 
     let submitForm = async (e) => {
         e.preventDefault();
@@ -55,6 +57,7 @@ export default function Create() {
             title,
             description,
             categories,
+            uid: user.uid
         }
         if (isEdit) {
             await updateDocument('books', id, data)
