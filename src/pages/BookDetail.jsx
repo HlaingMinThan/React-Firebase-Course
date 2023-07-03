@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import useTheme from '../hooks/useTheme';
 
 import useFirestore from '../hooks/useFirestore';
+import NoteForm from '../components/NoteForm';
 
 export default function BookDetail() {
 
@@ -36,10 +37,7 @@ export default function BookDetail() {
                     </div>
                     <div>
                         <h3 className='font-bold text-xl text-primary my-3 text-center'>My Notes</h3>
-                        <textarea className='p-3 shadow-md border-2 bg-gray-50 w-full' name="" id="" cols="30" rows="5"></textarea>
-                        <button className='text-white bg-primary px-3 py-2 rounded-lg my-3 flex items-center gap-1'>
-                            <span className="hidden md:block">Add Note</span>
-                        </button>
+                        <NoteForm />
                         <div className='border-2 shadow-md p-3 my-3'>
                             <div className='flex space-x-3'>
                                 <img src="https://d27v83ov1up738.cloudfront.net/user-profiles/zhW65iWspiv5FRKjp465yKLiQt9kPUhd2L8UDfV0.jpg" alt="" className='w-12 h-12 rounded-full' />
