@@ -3,6 +3,7 @@ import useTheme from '../hooks/useTheme';
 
 import useFirestore from '../hooks/useFirestore';
 import NoteForm from '../components/NoteForm';
+import NoteList from '../components/NoteList';
 
 export default function BookDetail() {
 
@@ -38,18 +39,7 @@ export default function BookDetail() {
                     <div>
                         <h3 className='font-bold text-xl text-primary my-3 text-center'>My Notes</h3>
                         <NoteForm />
-                        <div className='border-2 shadow-md p-3 my-3'>
-                            <div className='flex space-x-3'>
-                                <img src="https://d27v83ov1up738.cloudfront.net/user-profiles/zhW65iWspiv5FRKjp465yKLiQt9kPUhd2L8UDfV0.jpg" alt="" className='w-12 h-12 rounded-full' />
-                                <div>
-                                    <h3>Hlaing min than</h3>
-                                    <div className='text-gray-400'>20.6.2001</div>
-                                </div>
-                            </div>
-                            <div className='mt-3'>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste minima, fugit fugiat non, tenetur, culpa cum veritatis animi autem neque temporibus et explicabo iure! Maxime ad tenetur consequatur quasi atque.
-                            </div>
-                        </div>
+                        <NoteList />
                     </div>
                 </>
             )}
