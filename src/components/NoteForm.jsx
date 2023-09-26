@@ -6,7 +6,7 @@ export default function NoteForm({ type = 'create', setEditnote, editNote }) {
     let { id } = useParams();
     let [body, setBody] = useState('');
 
-    let { addCollection } = useFirestore()
+    let { addCollection, updateDocument } = useFirestore()
 
     useEffect(() => {
         if (type === 'update') {
@@ -14,20 +14,26 @@ export default function NoteForm({ type = 'create', setEditnote, editNote }) {
         }
     }, [type])
 
-    let addNote = async (e) => {
+    let submit = async (e) => {
         e.preventDefault()
-        let data = {
-            body,
-            bookUid: id
-        }
+        if (type === 'create') {
+            let data = {
+                body,
+                bookUid: id
+            }
 
-        await addCollection('notes', data)
+            await addCollection('notes', data)
+        } else {
+            editNote.body = body;
+            await updateDocument('notes', editNote.id, editNote, false);
+            setEditnote(null);
+        }
 
         setBody('')
     }
 
     return (
-        <form onSubmit={addNote} >
+        <form onSubmit={submit} >
             <textarea value={body} onChange={e => setBody(e.target.value)} className='p-3 shadow-md border-2 bg-gray-50 w-full' name="" id="" cols="30" rows="5"></textarea>
             <div className="flex space-x-3">
                 <button type='submit' className='text-white bg-primary px-3 py-2 rounded-lg my-3 flex items-center gap-1'>
