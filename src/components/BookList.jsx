@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useTheme from '../hooks/useTheme';
 import trash from '../assets/trash.svg';
 import pencil from '../assets/pencil.svg';
@@ -9,6 +9,7 @@ import { AuthContext } from '../contexts/AuthContext';
 export default function BookList() {
 
     let location = useLocation();
+    let navigate = useNavigate();
     let params = new URLSearchParams(location.search);
     let search = params.get('search')
 
@@ -51,9 +52,12 @@ export default function BookList() {
                                             ))}
                                         </div>
                                         <div className='flex space-x-5 items-center' >
-                                            <Link to={`/edit/${b.id}`}>
-                                                <img src={pencil} alt="" />
-                                            </Link>
+
+                                            <img src={pencil} onClick={(e) => {
+                                                e.preventDefault();
+                                                navigate(`/edit/${b.id}`);
+                                            }} alt="" />
+
                                             <img src={trash} alt="" onClick={(e) => deleteBook(e, b.id)} />
                                         </div>
                                     </div>
