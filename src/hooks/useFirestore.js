@@ -23,6 +23,7 @@ export default function useFirestore() {
                 if (docs.empty) {
                     setError('no documents found');
                     setLoading(false)
+                    setData([]);
                 } else {
                     let collectionDatas = [];
                     docs.forEach(doc => {
