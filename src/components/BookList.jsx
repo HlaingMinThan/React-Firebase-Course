@@ -16,7 +16,10 @@ export default function BookList() {
     let { getCollection, deleteDocument } = useFirestore();
 
     let { user } = useContext(AuthContext);
-    let { error, data: books, loading } = getCollection('books', ['uid', '==', user.uid]);
+    let { error, data: books, loading } = getCollection('books', ['uid', '==', user.uid], {
+        field: 'title',
+        value: search
+    });
 
     let deleteBook = async (e, id) => {
         e.preventDefault();
