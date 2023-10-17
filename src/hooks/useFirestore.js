@@ -31,9 +31,9 @@ export default function useFirestore() {
                         collectionDatas.push(document)
                     })
 
-                    if(search.field) {
+                    if(search?.field && search?.value) {
                         let  searchedDatas = collectionDatas.filter(doc => {
-                          return  doc[search.field].includes(search.value)
+                          return  doc[search?.field].includes(search?.value)
                         })
                         setData(searchedDatas);
                     }else {
@@ -43,7 +43,7 @@ export default function useFirestore() {
                     setError('');
                 }
             })
-        }, [qRef,search.field,search.value])
+        }, [qRef,search?.field,search?.value])
 
 
         return {error,data,loading};
